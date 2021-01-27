@@ -1,0 +1,34 @@
+__author__ = "janezj"
+
+"""
+
+Primer zajema slik in shranjevanja v listo
+
+"""
+
+from SimpleCV import *
+
+import sys
+import itertools
+
+slike = []
+
+cam = Camera(0, {"width":1280,"height":720})
+
+f = 10
+
+for x in range(0,f):
+    img = cam.getImage()
+    slike.append(img)
+
+img = cam.getImage()
+for r in itertools.repeat(img,10):
+    slike.append(img)
+
+
+
+print slike
+print len(slike)
+
+
+

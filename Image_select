@@ -1,0 +1,39 @@
+from SimpleCV import *
+
+d = ["pepsi_logo3.png","lasko_logo.png","union_logo2.png","multisola_logo2.png","cocacola_logo2.png"]
+tmp = 0
+for i in d:
+    print """\n Meni:
+\n 1 - Pepsi
+\n 2 - Laško
+\n 3 - Union
+\n 4 - Multi Sola
+\n 5 - Coca Cola"""
+    k = raw_input("Izberite pijaèo:")
+    if k == '1':
+        tmp = Image(d.pop(0))
+        print "Pepsi."
+        if tmp:
+            break
+    elif k == '2':
+        tmp = Image(d.pop(1))
+        print "Laško."
+        if tmp:
+            break
+    elif k == '3':
+        tmp = Image(d.pop(2))
+        print "Union."
+        if tmp:
+            break
+    elif k == '4':
+        tmp = Image(d.pop(3))
+        print "Multi Sola."
+        if tmp:
+            break
+    elif k == '5':
+        tmp = Image(d.pop(4))
+        print "Coca Cola."
+        if tmp:
+            break
+
+print "Template je: ", tmp

@@ -1,0 +1,70 @@
+# -*- coding: cp1250 -*-
+from SimpleCV import *
+import sys
+import itertools
+
+cam = Camera(0, {"width":1280,"height":720})
+
+disp = Display(resolution = (0,0))
+
+frames = 10
+for x in range(0,frames):
+    img = cam.getImage()
+
+tmp = Image("pepsi_logo3.png")
+tmp_grayscale = tmp.grayscale()
+while True:
+    
+    img = cam.getImage() 
+    img2 = cam.getImage()
+    diff = img2 - img
+    diff_grayscale = diff.grayscale()
+
+    match = diff_grayscale.findKeypointMatch(tmp_grayscale, quality=500.0, minDist=0.3, minMatch=0.10)
+    mpos = match.coordinates()
+    key = raw_input("Pritisni enter za zagon.")
+    if key:
+        for r in itertools.repeat(match, 10):
+            print mpos
+            k = raw_input("pritisni enter za naprej...")
+        else:
+            print "Nisem prenesel podatkov, ponovno zaženi program..."
+            break
+        break
+    
+
+
+
+if match:
+    match.draw(color = (128,30,89), width=5, autocolor=False)
+    print "match"
+    values = match.coordinates()
+    print "Coordinates:", values
+else:
+    print "no match"
+
+xy = values.tolist()
+xy = xy.pop()
+x = xy.pop(0)
+
+
+x = int(float(x))
+print x
+pos1 = range(-50,248,1)
+pos2 = range(248,496,1)
+pos3 = range(496,744,1)
+pos4 = range(744,996,1)
+pos5 = range(966,1280,1)
+    
+if x in pos1:
+    print "Can is in position1."
+elif x in pos2:
+    print "Can is in position2."
+elif x in pos3:
+    print "Can is in position3."
+elif x in pos4:
+    print "Can is in position4."
+elif x in pos5:
+    print "Can is in position5."
+
+match.show()
